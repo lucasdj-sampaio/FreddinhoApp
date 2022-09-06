@@ -1,11 +1,11 @@
-package com.fenix.freddinhoapp
+package com.fenix.freddinho
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class ChildMenu : AppCompatActivity() {
+class ChatChild : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_child_menu)
+        setContentView(R.layout.activity_chat_child)
     }
 }

@@ -1,4 +1,4 @@
-package com.fenix.freddinhoapp
+package com.fenix.freddinho
 
 import org.junit.Test
 
