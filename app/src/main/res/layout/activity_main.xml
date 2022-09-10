@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/background"
-    tools:context=".MainActivity">
+    tools:context="com.fenix.freddinho.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:fontFamily="@font/montserrat_extrabold"
+                android:fontFamily="@font/montserrat_bold"
                 android:textColor="@color/blue_font"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:fontFamily="@font/montserrat_extrabold"
+        android:fontFamily="@font/montserrat_bold"
         android:text="Quem está utilizando?"
         android:textColor="@color/blue_font">
     </TextView>
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Joana    "
-            android:fontFamily="@font/montserrat_extrabold"
+            android:fontFamily="@font/montserrat_bold"
             android:textColor="@color/blue_font"/>
     </LinearLayout>
 
@@ -78,14 +78,14 @@
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:layout_gravity="center"
-            android:drawableBottom="@drawable/profilegirl"/>
+            android:drawableBottom="@drawable/profileboy"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Thomas"
-            android:fontFamily="@font/montserrat_extrabold"
+            android:fontFamily="@font/montserrat_bold"
             android:textColor="@color/blue_font" />
     </LinearLayout>
 

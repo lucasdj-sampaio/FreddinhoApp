@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Freddinho.iml" filepath="$PROJECT_DIR$/.idea/modules/Freddinho.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Freddinho.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Freddinho.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Freddinho.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Freddinho.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Freddinho.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Freddinho.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Freddinho.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Freddinho.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FreddinhoApp.iml" filepath="$PROJECT_DIR$/.idea/modules/FreddinhoApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FreddinhoApp.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FreddinhoApp.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FreddinhoApp.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FreddinhoApp.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FreddinhoApp.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FreddinhoApp.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FreddinhoApp.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FreddinhoApp.app.unitTest.iml" />
     </modules>
   </component>
 </project>

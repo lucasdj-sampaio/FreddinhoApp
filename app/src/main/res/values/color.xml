@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue_font">#3F51B5</color>
+    <color name="orange">#303f9f</color>
+    <color name="purple_200">#62caa6</color>
+    <color name="purple_700">#62caa6</color>
+    <color name="teal_200">#62caa6</color>
+    <color name="black">#62caa6</color>
+    <color name="blue">#62caa6</color>
+</resources>

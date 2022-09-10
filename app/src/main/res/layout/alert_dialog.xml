@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginRight="10dp"
+    android:background="@drawable/custom_dialog">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="75dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="50dp"
-        android:layout_marginRight="75dp"
+        android:layout_marginRight="50dp"
         android:fontFamily="@font/montserrat_bold"
         android:gravity="center"
         android:text="Digite a senha da conta para acessar"
@@ -23,15 +26,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="65dp"
-        android:layout_marginRight="65dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         app:boxStrokeColor="@color/orange">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="textPassword"
-            android:lines="1"/>
+            android:lines="1"
+            android:background="@drawable/custom_input"
+            app:backgroundTint="@null"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
@@ -39,6 +44,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:layout_marginBottom="50dp"
         android:layout_gravity="center">
 
@@ -46,18 +53,21 @@
             android:id="@+id/btn_comecar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:text="COMEÇAR"
+            android:background="@drawable/custom_button"
             android:fontFamily="@font/montserrat_bold"
-            android:backgroundTint="@color/blue"/>
+            android:text=" COMEÇAR "
+            app:backgroundTint="@null"
+            android:layout_marginRight="10dp"/>
 
         <Button
             android:id="@+id/btn_cancelar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CANCELAR"
+            android:backgroundTint="@color/blue"
             android:fontFamily="@font/montserrat_bold"
-            android:backgroundTint="@color/blue"/>
+            android:text="CANCELAR"
+            android:background="@drawable/custom_button"
+            app:backgroundTint="@null"/>
     </LinearLayout>
 
 </LinearLayout>

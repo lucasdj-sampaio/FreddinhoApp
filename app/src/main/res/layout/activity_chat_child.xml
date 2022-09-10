@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".ChatChild">
+    tools:context="com.fenix.freddinho.ChatChild">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:fontFamily="@font/montserrat_extrabold"
+                android:fontFamily="@font/montserrat_bold"
                 android:textColor="@color/blue_font"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:backgroundTint="@color/orange"
-        android:fontFamily="@font/montserrat_extrabold"
+        android:fontFamily="@font/montserrat_bold"
         android:layout_marginTop="30dp"
         android:text="COMEÇAR"
         app:icon="@drawable/icon"

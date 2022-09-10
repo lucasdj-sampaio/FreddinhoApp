@@ -1,7 +1,7 @@
 package com.fenix.freddinho
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 
 class ChatAdult : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
