@@ -70,7 +70,6 @@ class WatsonChat : AppCompatActivity() {
         mContext = applicationContext
         inputMessage = findViewById(R.id.message)
         btnSend = findViewById(R.id.btn_send)
-        btnRecord = findViewById(R.id.btn_record)
 
         val customFont = "Montserrat-Regular.ttf"
         val typeface = Typeface.createFromAsset(assets, customFont)
@@ -133,16 +132,6 @@ class WatsonChat : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.refresh -> {
-                finish()
-                startActivity(intent)
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
     // Speech-to-Text Record Audio permission
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -195,8 +184,6 @@ class WatsonChat : AppCompatActivity() {
             inputMessage.message = inputmessage
             inputMessage.id = "100"
             initialRequest = false
-            Toast.makeText(applicationContext, "Tap on the message for Voice", Toast.LENGTH_LONG)
-                .show()
         }
 
         inputMessage!!.setText("")
