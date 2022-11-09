@@ -1,19 +1,18 @@
 package com.fenix.freddinho
 import android.app.AlertDialog
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.fasterxml.jackson.annotation.JacksonInject
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import okhttp3.*
 import java.io.IOException
-import com.fasterxml.jackson.databind.ObjectMapper
 
 class MainActivity : AppCompatActivity() {
     private lateinit var dialog: AlertDialog
-    private val client = OkHttpClient();
+    private val client = OkHttpClient()
+    private val mapper = jacksonObjectMapper()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,9 +23,22 @@ class MainActivity : AppCompatActivity() {
             val userName = preferences.getString("userName", "").toString()
             val password = preferences.getString("userPass", "").toString()
 
-            var userId = getUserId(userName, password).toInt();
+            var userId = getUserId(userName, password)
+
+            var dependents = getDependentByUserId(userId)
 
             setContentView(R.layout.activity_main)
+
+            findViewById<Button>(R.id.btn_profile_girl).setOnClickListener {
+                showDialogNormal()
+            }
+
+            val btnProfileBoy = findViewById<Button>(R.id.btn_profile_boy)
+
+            btnProfileBoy.setOnClickListener {
+                val a = Intent(this, ChatChild::class.java)
+                startActivity(a)
+            }
         }
         catch (e: Exception) {
             Toast.makeText(applicationContext,
@@ -35,21 +47,14 @@ class MainActivity : AppCompatActivity() {
 
             setContentView(R.layout.activity_login)
         }
-
-        findViewById<Button>(R.id.btn_profile_girl).setOnClickListener {
-            showDialogNormal()
-        }
-
-        val btnProfileBoy = findViewById<Button>(R.id.btn_profile_boy)
-
-        btnProfileBoy.setOnClickListener {
-            val a = Intent(this, ChatChild::class.java)
-            startActivity(a)
-        }
     }
 
     private fun getUserId(user: String, password: String): String{
-        val request = Request.Builder().url("").build()
+        val request = Request.Builder()
+                .url("https://freddinho-api.azurewebsites.net/validcredential")
+                .header("password", password)
+                .header("email", user)
+                .build()
         var requestResponse = ""
 
         client.newCall(request).enqueue(object : Callback{
@@ -65,12 +70,24 @@ class MainActivity : AppCompatActivity() {
         return requestResponse;
     }
 
-    private fun getDependentByUserId(userId: Int): Dependent{
-        val request = Request.Builder().url("").build()
-        val mapper = JacksonInject();
+    private fun getDependentByUserId(userId: String): List<Dependent>?{
+        val dependentList: List<Dependent>
 
+        try {
+            val request = Request.Builder()
+                    .url("https://freddinho-api.azurewebsites.net/validcredential")
+                    .header("userId", userId)
+                    .build()
+            val response = client.newCall(request).execute()
 
-        return ;
+            dependentList = mapper.readValue(response.body().toString()
+                    , List::class.java) as List<Dependent>
+        }
+        catch (e: Exception){
+            return null
+        }
+
+        return dependentList
     }
 
     private fun showDialogNormal(){
