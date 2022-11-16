@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:drawableBottom=""/>
+            android:drawableBottom="@drawable/profileboy"/>
 
         <TextView
             android:id="@+id/user_name"

@@ -19,9 +19,6 @@
         android:theme="@style/Theme.Freddinho"
         android:supportsRtl="true">
         <activity
-            android:name=".LoginActivity"
-            android:exported="false"/>
-        <activity
             android:name=".ChatAdult"
             android:exported="false" />
         <activity
