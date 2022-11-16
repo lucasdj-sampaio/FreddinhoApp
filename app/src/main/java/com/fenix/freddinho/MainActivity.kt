@@ -1,4 +1,5 @@
 package com.fenix.freddinho
+import Adapter
 import Dependent
 import HttpHelper
 import android.app.AlertDialog
@@ -6,9 +7,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -33,12 +37,14 @@ class MainActivity(override val coroutineContext: CoroutineContext = Dispatchers
             val password = preferences.getString("userPass", "admin")
                     .toString()
 
+            var viewList: RecyclerView = findViewById<RecyclerView>(R.id.profileList)
+            viewList.layoutManager = LinearLayoutManager(this)
+            viewList.setHasFixedSize(true)
+
             launch{
                 val dependent: List<Dependent> = callApi(userName, password);
 
-                dependent.map {
-                    createProfile(it)
-                }
+                createAdapter(dependent.toMutableList(), viewList)
             }
         }
         catch (e: Exception) {
@@ -79,27 +85,15 @@ class MainActivity(override val coroutineContext: CoroutineContext = Dispatchers
         return helper.getDependentByUserId("1")
     }
 
-    private fun createProfile(dependent: Dependent){
-        val build = AlertDialog.Builder(this)
+    private fun createAdapter(dependentList: MutableList<Dependent>, viewList: RecyclerView){
+        try{
+            var responseAdapter = Adapter(this, dependentList)
+            viewList.adapter = responseAdapter
 
-        val view: View = if (dependent.gender == 'F'){
-            layoutInflater.inflate(R.layout.profile_dialog1, null)
-        }else{
-            layoutInflater.inflate(R.layout.profile_dialog2, null)
+        }catch (e: Exception){
+            Toast.makeText(applicationContext,
+                    e.message,
+                    Toast.LENGTH_LONG)
         }
-
-        build.setView(view)
-
-        val imgButton = view.findViewById<Button>(R.id.btn_profile)
-        imgButton.setOnClickListener {
-            val i = Intent(this, ChatAdult::class.java)
-            startActivity(i)
-        }
-
-        val nameView = view.findViewById<TextView>(R.id.user_name)
-        nameView.text = dependent.name
-
-        dialog = build.create()
-        dialog.show()
     }
 }
