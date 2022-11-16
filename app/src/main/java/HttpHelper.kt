@@ -1,10 +1,7 @@
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import okhttp3.Call
-import okhttp3.Callback
+import com.fasterxml.jackson.module.kotlin.readValue
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.Response
-import java.io.IOException
 
 class HttpHelper {
 
@@ -23,7 +20,7 @@ class HttpHelper {
     }
 
     fun getDependentByUserId(userId: String): List<Dependent>{
-        val dependentList: List<Dependent>
+        var dependentList: List<Dependent> = listOf()
         val client = OkHttpClient()
         val mapper = jacksonObjectMapper()
 
@@ -35,12 +32,12 @@ class HttpHelper {
                     .build()
             val response = client.newCall(request).execute()
 
-            dependentList = mapper.readValue(response.body()?.string()
-                    , List::class.java) as List<Dependent>
+            response.body()?.string()?.let {
+                dependentList = mapper.readValue(it)
+            }
         }
         catch (e: Exception){
             println(e.message)
-            return listOf()
         }
 
         return dependentList

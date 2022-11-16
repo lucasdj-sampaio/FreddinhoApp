@@ -4,16 +4,22 @@ import HttpHelper
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import org.jetbrains.anko.doAsync
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class MainActivity : AppCompatActivity() {
+class MainActivity(override val coroutineContext: CoroutineContext = Dispatchers.IO + Job()) :
+        AppCompatActivity(), CoroutineScope {
+
     private lateinit var dialog: AlertDialog
+    private var job: Job = Job()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,12 +33,8 @@ class MainActivity : AppCompatActivity() {
             val password = preferences.getString("userPass", "admin")
                     .toString()
 
-            doAsync{
-                val helper = HttpHelper()
-                val userId = helper.getUserId(userName, password)
-                val dependent = helper.getDependentByUserId("1")
-
-                Log.d("dependent", dependent[0].name)
+            launch{
+                val dependent: List<Dependent> = callApi(userName, password);
 
                 dependent.map {
                     createProfile(it)
@@ -44,6 +46,11 @@ class MainActivity : AppCompatActivity() {
                     e.message,
                     Toast.LENGTH_LONG)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        job.cancel()
     }
 
     private fun showDialogNormal(){
@@ -65,15 +72,20 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun createProfile(dependent: Dependent){
-        println("=======================================")
-        val build = AlertDialog.Builder(this)
-        val view: View;
+    private fun callApi(userName: String, password: String): List<Dependent>{
+        val helper = HttpHelper()
+        val userId = helper.getUserId(userName, password)
 
-        if (dependent.gender == 'F'){
-            view = layoutInflater.inflate(R.layout.profile_dialog1, null)
+        return helper.getDependentByUserId("1")
+    }
+
+    private fun createProfile(dependent: Dependent){
+        val build = AlertDialog.Builder(this)
+
+        val view: View = if (dependent.gender == 'F'){
+            layoutInflater.inflate(R.layout.profile_dialog1, null)
         }else{
-            view = layoutInflater.inflate(R.layout.profile_dialog2, null)
+            layoutInflater.inflate(R.layout.profile_dialog2, null)
         }
 
         build.setView(view)
