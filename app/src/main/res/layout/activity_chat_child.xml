@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/backgroundwithfreddrinho"
     android:orientation="vertical"
     tools:context="com.fenix.freddinho.ChatChild">
 
@@ -20,34 +20,39 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
                 android:text="Fale com o Freddinho"
+                android:textColor="@color/blue_font"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:fontFamily="@font/montserrat_bold"
-                android:textColor="@color/blue_font"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_marginTop="0.8in"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/childchat"
-        android:layout_marginTop="80dp"
-        android:layout_gravity="center" />
+        android:baselineAligned="false"
+        android:fontFamily="@font/montserrat_bold"
+        android:textAlignment="center"
+        android:paddingStart="0.7in"
+        android:text="@string/oi_thomas_nque_bom_que_nvoltou"
+        android:textColor="@color/blue_font" />
 
     <Button
         android:id="@+id/btn_child"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="1.3in"
         android:backgroundTint="@color/orange"
         android:fontFamily="@font/montserrat_bold"
-        android:layout_marginTop="30dp"
         android:text="COMEÇAR"
         app:icon="@drawable/icon"
         app:iconGravity="end" />

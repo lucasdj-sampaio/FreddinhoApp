@@ -2,13 +2,7 @@ package com.fenix.freddinho
 import Adapter
 import Dependent
 import HttpHelper
-import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,7 +16,6 @@ import kotlin.coroutines.CoroutineContext
 class MainActivity(override val coroutineContext: CoroutineContext = Dispatchers.IO + Job()) :
         AppCompatActivity(), CoroutineScope {
 
-    private lateinit var dialog: AlertDialog
     private var job: Job = Job()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,12 +30,12 @@ class MainActivity(override val coroutineContext: CoroutineContext = Dispatchers
             val password = preferences.getString("userPass", "admin")
                     .toString()
 
-            var viewList: RecyclerView = findViewById<RecyclerView>(R.id.profileList)
+            val viewList: RecyclerView = findViewById<RecyclerView>(R.id.profileList)
             viewList.layoutManager = LinearLayoutManager(this)
             viewList.setHasFixedSize(true)
 
             launch{
-                val dependent: List<Dependent> = callApi(userName, password);
+                val dependent: List<Dependent> = callApi(userName, password)
 
                 createAdapter(dependent.toMutableList(), viewList)
             }
@@ -50,32 +43,13 @@ class MainActivity(override val coroutineContext: CoroutineContext = Dispatchers
         catch (e: Exception) {
             Toast.makeText(applicationContext,
                     e.message,
-                    Toast.LENGTH_LONG)
+                    Toast.LENGTH_LONG).show()
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         job.cancel()
-    }
-
-    private fun showDialogNormal(){
-        val build = AlertDialog.Builder(this)
-        val view = layoutInflater.inflate(R.layout.alert_dialog, null)
-
-        build.setView(view)
-
-        val btnCancelar = view.findViewById<Button>(R.id.btn_cancelar)
-        btnCancelar.setOnClickListener { dialog.dismiss() }
-
-        val btnContinuar = view.findViewById<Button>(R.id.btn_comecar)
-        btnContinuar.setOnClickListener {
-            val i = Intent(this, ChatAdult::class.java)
-            startActivity(i)
-        }
-
-        dialog = build.create()
-        dialog.show()
     }
 
     private fun callApi(userName: String, password: String): List<Dependent>{
@@ -87,13 +61,14 @@ class MainActivity(override val coroutineContext: CoroutineContext = Dispatchers
 
     private fun createAdapter(dependentList: MutableList<Dependent>, viewList: RecyclerView){
         try{
-            var responseAdapter = Adapter(this, dependentList)
-            viewList.adapter = responseAdapter
-
+            runOnUiThread {
+                val responseAdapter = Adapter(this, dependentList)
+                viewList.adapter = responseAdapter
+            }
         }catch (e: Exception){
             Toast.makeText(applicationContext,
                     e.message,
-                    Toast.LENGTH_LONG)
+                    Toast.LENGTH_LONG).show()
         }
     }
 }
