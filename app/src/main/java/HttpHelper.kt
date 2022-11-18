@@ -9,7 +9,7 @@ class HttpHelper {
         val client = OkHttpClient()
 
         val request = Request.Builder()
-                .url("https://freddinho-api.azurewebsites.net/validcredential")
+                .url("https://freddinho-api.azurewebsites.net/getaccountid")
                 .header("password", password)
                 .header("email", email)
                 .build()

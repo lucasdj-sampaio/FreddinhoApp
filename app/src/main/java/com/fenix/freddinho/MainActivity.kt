@@ -56,7 +56,7 @@ class MainActivity(override val coroutineContext: CoroutineContext = Dispatchers
         val helper = HttpHelper()
         val userId = helper.getUserId(userName, password)
 
-        return helper.getDependentByUserId("1")
+        return helper.getDependentByUserId(userId)
     }
 
     private fun createAdapter(dependentList: MutableList<Dependent>, viewList: RecyclerView){
