@@ -7,6 +7,9 @@ import okhttp3.RequestBody
 
 class HttpHelper {
 
+    private val baseUrl: String = "https://freddinho-api.azurewebsites.net/"
+    //private val baseUrl: String = "https://10.0.2.2:7257/"
+
     fun getUserId(email: String, password: String): String{
         val client = OkHttpClient()
 
@@ -17,7 +20,7 @@ class HttpHelper {
                         "}")
 
         val request = Request.Builder()
-                .url("https://freddinho-api.azurewebsites.net/getaccountid")
+                .url("${baseUrl}getaccountid")
                 .post(body)
                 .build()
 
@@ -33,7 +36,7 @@ class HttpHelper {
 
         try {
             val request = Request.Builder()
-                    .url("https://freddinho-api.azurewebsites.net/getdependent?userid=${userId}")
+                    .url("${baseUrl}getdependent?userid=${userId}")
                     .get()
                     .build()
             val response = client.newCall(request).execute()
